@@ -1,0 +1,800 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+14-763/18-763
+Systems and Toolchains for AI Engineers
+
+F A L L 2 0 2 5
+
+
+
+
+
+M O H A M E D F A R A G
+F A R A G @ C M U . E D U 
+
+G U A N N A N QU 
+G Q U @ A N D R E W . C M U . E D U
+
+
+
+Agenda
+
+• Welcome and Introductions
+• The Data Science Process
+• Expectations for Incoming Students
+• Teaching Team Introductions
+• Course Syllabus & Schedule
+• Course Dataset: NSL-KDD
+• Next Steps
+
+
+
+Why is this course Important?
+
+• The Machine Learning market has a relentless pace of innovation, reflected by multiple trends such as democratization, augmentation, operationalization and composability. This innovation is reflected in growth opportunities and increase market size.
+• "By 2026, 30% of new applications will use AI to drive personalized adaptive user interfaces, up from under 5% today", Gartner R&D.
+• "AI Market value of nearly 100 billion U.S. dollars is expected to grow twentyfold
+by 2030, up to nearly two trillion U.S. dollars.", Statista Research.
+• An ad hoc approach to AI isn't sustainable and won't fulfill the expected market growth
+& demand.
+• The use of advanced AI tools, frameworks and practices will enable scaling and
+operationalizing AI, leading to sustainable AI that meets our market demand
+• According to St. John's University report, AI and Data analytics are the most important 2 skills in 2024.
+
+
+
+Machine Learning requires a lot more than just training!
+
+
+
+
+
+
+
+
+
+
+
+Figure 1.0 The Machine Learning Modeling Workflow
+
+
+
+
+The Machine Learning Modeling Workflow - Cont'd
+
+• Data may be sourced from from IoT devices, logs from webservers, data gathered from
+social media, census datasets, data streamed from online sources using APIs, etc.
+
+• Data preparation, or cleaning, is the process of collecting, choosing, modeling, and transforming data to answer an analytical question.
+
+
+
+
+
+• Model selection and training is the process of building the algorithms which learn to make predictions about unforeseen/future data.
+• The efficiency & accuracy of the machine learning model is then evaluated and fine- tuned to provide best possible performance.
+• Model deployment refers to the application of a machine learning model on new data in a production environment.
+
+
+
+
+
+What is this course about?!
+
+
+
+
+
+
+Data Engineering
+
+Large-Scale ML
+Frameworks
+
+Edge AI and
+Embedded ML
+
+Utilities and
+Productionalization
+
+Other Topics
+
+
+
+
+
+SQL Databases:
+Postgres
+
+
+PyTorch
+
+
+Edge Impulse
+
+
+JAX
+
+
+GenAI
+
+
+
+NoSQL
+Databases: Neo4j
+
+Data Streaming: Kafka
+
+
+
+
+TensorFlow
+
+
+
+
+TensorFlow Lite
+
+
+
+
+MLOps
+
+
+
+
+GPU
+Acceleration
+
+
+
+
+Figure 2.0 Course Technologies
+
+
+
+
+Course Knowledge Depth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL, NoSQL, Docker
+
+
+
+
+Spark
+
+
+Kafka
+
+
+
+
+
+PyTorch
+
+
+TensorFlow and JAX
+
+Edge Impulse
+
+
+MLOps/GitHub Actions
+
+Figure 3.0 Course Knowledge Depth
+
+
+
+
+Relevance of Course Topics to Today's Market
+
+
+Machine learning is not only
+about models.
+
+ML Systems and Toolchains aim to productionalize models
+
+AI Engineering, AI-Ready Data, Edge AI and Generative AI are areas of focus in this course
+
+
+
+
+
+
+
+
+Figure 4.0 2025 Hype Cycle for Artificial Intelligence, by Gartner
+
+
+
+
+What this course is and What is it not?
+
+• This course will help you get an introduction on different tools and technologies that are needed to build machine learning models at large-scale or for embedded systems.
+
+• 
+
+• This course is NOT a source of learning the internals of machine learning models!
+
+• Also, this course doesn't offer a lot of depth on the theory behind the design of
+machine learning models.
+
+
+
+
+Expectations for Incoming Students
+
+• You are expected to know Python or are willing to learn it.
+
+• Watch the Python session recording if you need assistance!
+
+• You are expected to have an introductory knowledge about machine
+learning models and a basic understanding of neural network theory.
+
+
+Instructor Introductions
+
+
+
+
+
+
+
+
+
+
+
+
+M O H A M E D F A R A G
+F A R A G @ C M U . E D U 
+
+G U A N N A N QU 
+G Q U @ A N D R E W . C M U . E D U
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11
+
+
+TA Introductions
+• Anirudh Joshi - INI - ajoshi3@andrew.cmu.edu
+• Hannah Manheimer - BME - hmanheim@andrew.cmu.edu
+• Janbol Jangabyl - Civil - jjangaby@andrew.cmu.edu
+• Jayant Sharma - BME - jayantsh@andrew.cmu.edu
+• Jonathan He - MechE - jintongh@andrew.cmu.edu
+• Manigandan Ramadasan - INI - mramadas@andrew.cmu.edu
+• Yash Bobde - INI - ybobde@andrew.cmu.edu
+
+
+
+12
+
+
+
+Course Logistics
+
+• Lectures recordings are made available after the lecture end time.
+
+• You may ask questions interactively or via TopHat during the lecture.
+Sign up for a free TopHat account and join the course with the following code:
+226573
+• Future lectures will be posted on Canvas as Jupyter Notebooks and PDF files.
+
+• Students who have approved accommodation shall contact the course instructor to figure out how the instructor can meet their needs
+
+
+
+Course Delivery Technology Stack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Figure 5.0 Course Delivery Tech Stack
+
+
+
+Course Logistics - Cont'd - Office Hours
+
+
+
+
+• Instructor Office Hours will use this Zoom URL: https://cmu.zoom.us/j/92231657955?pwd=mNyb0fCSLo1EZwcajFcLugNwiV6dBc.1
+
+• TA Office Hours will use this Zoom URL:
+• https://cmu.zoom.us/j/94562388908?pwd=i9HVsjiHwmZsy6VgsrZZ99ajjpGmxE.1
+• In-person OHs won't have Zoom.
+
+
+
+Course Logistics - Piazza Hours
+
+
+
+
+
+• Please note that TAs will respond to inquiries/questions made *before* the Piazza OHs start time. Questions and inquiries that are made during the OHs time slot are not guaranteed to be answered during the same time slot.
+
+
+
+Office Hours Etiquette Reminder
+• Sign-up for a spot in the OH Queue: https://ohq.eberly.cmu.edu/#/courses and search for "14-863"
+
+• Office Hours aim to help you find the path to maximize your learning experience.
+
+• Getting the answers from the TA directly won't help you learn so there won't be direct solutions provided during Office Hours.
+
+• The goal of the office hours is to give you some ideas and pointers for you to debug the issues.
+
+• Please don't plan to spend more than 15 minutes in your conversation with the TA.
+• Ask good questions with due diligence. Please research the issue and put an effort in
+implementing it before coming to Office hours.
+• Example of a bad question: I found this draft code online and I'm citing it but can't get it to
+work. Can you help?
+• Example of a good question: I'm getting a bug in my deployment to the cloud, I
+researched the issue and found these 3 different references (share the URLs).
+I implemented the first one and it didn't work. I'm trying the second one now and getting an error that I can't find enough references to it online. What could be the root cause of it?
+
+
+
+Course Assessment
+
+
+
+Course Assessment - Cont'd
+
+
+
+• Course Project: Each student will have the option to team up with another student for the project and you will choose one of two project options to submit. This project leverages most of the topics and practices that are covered throughout the semester. Course details are released in Week-3. Project submission deadline is November 13th 11:59PM ET.
+• Late submissions for the course project will receive no grade (0 points).
+• Quizzes: there will be 1 quiz published on Canvas during the lecture with a specific access code. The access code will be revealed during the lecture to the registered students of the corresponding section.
+• Quizzes will start from the second week of classes.
+• Students will receive two excused absences for lectures (and their quizzes) for emergencies, sickness, etc.
+• If you need to attend remotely for extended time period, please refer to the course homepage on Canvas.
+
+
+
+Course Assessment - Cont'd
+
+
+
+• Homework Assignments: there will be 8 homework assignments provided throughout the semester covering the practical aspects of the class. There will be good learning curve that students will have to take on their own.
+• Students will have 3 days to submit an assignment after the due date and a late penalty will be applied. Late penalties are applied based on the timestamp of the last code commit on GitHub and it will follow this equation:
+• Total of 5 points for up to 24 hours delay
+• Total of 15 points for the next 24 hours delay
+• Total of 25 points for the next 24 hours delay
+• 100 points penalty (no grade) after this time.
+After homework grades are released, regrade requests can be made for 24 hours via
+Gradescope and CANNOT be submitted via email.
+
+
+
+Course Grade Scheme
+
+
+
++/- are used to provide granularity
+
+
+
+
+
+Course Schedule
+
+Course Schedule - Cont'd
+
+
+
+
+HW Submission Guidelines
+• HW-1 focuses on Environment Setup and GitHub Skills. It's released on Canvas, and you can submit it with no penalty until Thursday September 11th, 11:59PM ET.
+• HW-1 submission:
+
+
+
+• HW-2 and later assignment submissions:
+
+
+
+
+URL
+
+
+
+
+Academic Integrity Violations (AIVs)
+• AIVs are serious and can have direct impact on your course grade, your scholarship -if any-, your graduation timeline, and/or your continuation in your degree program.
+• Simple rules to follow:
+• Cite all the references you are using. Use APA citation style.
+• Cite ChatGPT (or other AI tools) for any code/info used in your answers.
+• Don't use more than 30% of your solution/answer from external sources.
+• Collaborate and share ideas with your peers.
+• Don't share code with your peers (including in-class group exercises). Don't use your peer's code even after changing variable names or statement order.
+• Don't share quiz access codes with your peers.
+
+
+Other Syllabus Information
+
+
+
+• 	If you run out of Google Cloud credits, plan for 24-48-hour delay to get a new coupon.
+• 	Syllabus contains important information about student wellness, student academic success center, and food insecurity.
+• 	The Syllabus can be found on Canvas under the Modules section
+
+
+
+
+26
+
+
+Waitlisted?
+
+
+
+
+For enrollment questions and inquiries, please email
+1) INI Academics at
+ini-academic@andrew.cmu.edu
+OR
+2) ECE Academics at
+ece-academicaffairs@andrew.cmu.edu
+
+
+
+
+27
+
+Enrolled and Have Problems Accessing the Lecture Room?
+
+
+
+
+
+Contact ini-help@andrew.cmu.edu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+28
+
+
+
+
+Bottom Line
+
+• You are a graduate student at CMU, and we expect you to pay close attention to the details mentioned during lectures and in your homework assignments.
+• Ask questions and avoid making unreasonable assumptions.
+• Use your intellectual abilities and problem-solving skills to fill in any gaps
+beyond what the teaching team can share with you.
+• We are committed to your success both inside and outside the classroom.
+• Feel free to reach out with any questions related to research, internships,
+career advice, or related topics.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Course Dataset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+30
+
+
+
+
+Course Dataset
+
+• In this course, we will use the NSL-KDD dataset.
+• 
+
+
+
+
+
+• The dataset contains
+purposes
+
+which is suitable for our class
+
+
+• You may download this dataset from Canvas Modules' section.
+
+
+
+
+History of NSL-KDD Dataset
+
+• Cybercrimes represent any criminal activity that involves a computer, a network, or a networked device. Cybercrimes may lead to physical damages or financial losses (in billions of dollars).
+
+• It's critical to detect network intrusions before they occur. One way to identify intrusions is to look at previous potential intrusions and look for similarities/patterns. New intrusions are likely to share some aspects or features
+
+• In 1998, The Defense Advanced Research Projects Agency (DARPA) established the **Intrusion Detection Evaluation Program** to survey and evaluate research in intrusion detection. This program organized The KDD cup as an
+
+
+
+
+History of NSL-KDD Dataset - Cont'd
+
+
+
+• In 1999, this competition was held with the goal of collecting traffic records. The competition task was to build a network intrusion detector, a predictive model capable of distinguishing between "bad" connections, called intrusions or attacks, and "good" normal connections. As a result of this competition, a mass amount of
+
+
+
+• The KDD'99 dataset had several redundant records and issues with one column, so the NSL-KDD dataset was created as a newer version of it. We will use the NSL-KDD dataset in this course.
+
+
+
+
+NSL-KDD Dataset
+
+
+
+• The NSL-KDD dataset contains 43 features per record, with 41 of the features referring to
+the traffic input itself and the last two columns represent the
+normal or attack) and
+
+
+
+41 Features
+
+Activity Type Score/Difficulty Level
+
+
+• Let's start by exploring the output. The score/difficulty level column takes an integer value up to 21. On the other hand, the activity type column indicates either
+
+• In the dataset, there are 4 different classes of attacks:
+• Denial of Service (DoS)
+• Probe
+• User to Root (U2R)
+• Remote to Local (R2L)
+
+
+
+
+NSL-KDD Dataset - DoS Attacks
+
+
+
+• DoS is an attack that tries to shut down the traffic flow to and from the target system. The Intrusion Detection System (IDS) is flooded with an abnormal amount of traffic, which the system can't handle, and shuts down to protect itself. This prevents normal traffic from visiting a network. An example of this could be an online retailer getting flooded with online orders on a day with a big sale, and because the network can't handle all the requests, it will shutdown and therefore, prevents paying customers from purchasing anything.
+
+
+
+
+NSL-KDD Dataset - Probe Attacks
+
+
+
+• 
+
+• The goal here is to act like a thief and steal important information, whether it be personal information about clients or banking information.
+
+
+
+
+NSL-KDD Dataset - User 2 Root (U2R) Attacks
+
+
+
+• U2R is an attack that starts off with a normal user account and tries to gain
+
+• The attacker attempts to exploit the vulnerabilities in a system to gain root privileges/access.
+
+• Examples: Perl, Load Module and Eject attacks.
+
+
+
+
+NSL-KDD Dataset - Remote 2 Local (R2L) Attacks
+
+
+
+• 
+
+
+
+• Examples of R2L include guessing passwords, ftp writes and IMAP.
+
+• Notice the difference between U2R and R2L. Can you explain?
+
+
+
+
+How are the attack categories listed on the dataset?
+
+
+• In column number 42 in the dataset, the attack is represented by its sub-category (and not the parent category). So, you will find neptune in the activity type column instead of (DoS).
+
+
+
+
+NSL-KDD Dataset - 41 Input Features
+
+
+
+The 41 features in every traffic input can be broken down into four
+categories:
+• Intrinsic features
+• Content-based Features
+• Time-based Features
+• Host-based Features
+
+
+
+
+NSL-KDD Dataset - 41 Input Features -
+
+
+
+Intrinsic features can be derived from the header of the packet without looking into the payload itself, and hold the basic information about the packet. This category contains features 1-9.
+
+
+
+
+NSL-KDD Dataset - 41 Input Features - Content
+Content features hold information about the original packets, as they are sent in multiple pieces rather than one. With this information, the system can access the payload. This category contains features 10-22.
+
+
+
+
+NSL-KDD Dataset - 41 Input Features - Time-based
+
+
+Time-based features hold the analysis of the traffic input over a two-second window and contains information like how many connections it attempted to make to the same host. These features are mostly counts and rates rather than information about the content of the traffic input. This category contains features 23-31.
+
+
+
+
+NSL-KDD Dataset - 41 Input Features - Host-based
+
+
+Host-based features are similar to Time-based features, except instead of analyzing over a 2-second window, it analyzes over a series of connections made (how many requests made to the same host over x-number of connections). These features are designed to access attacks, which span longer than a two-second window time-span. This category contains features 32-41.
+
+
+
+
+NSL-KDD Dataset - File Explanation
+• KDDTrain+.ARFF: The full NSL-KDD train set with binary labels in ARFF format
+• KDDTrain+.TXT: The full NSL-KDD train set including attack-type labels and difficulty level in CSV format
+• KDDTrain+_20Percent.ARFF: A 20% subset of the KDDTrain+.arff file
+• KDDTrain+_20Percent.TXT: A 20% subset of the KDDTrain+.txt file
+• KDDTest+.ARFF: The full NSL-KDD test set with binary labels in ARFF format
+• KDDTest+.TXT: The full NSL-KDD test set including attack-type labels and difficulty level in CSV format
+
+• KDDTest-21.ARFF: A subset of the KDDTest+.arff file which does not include records with difficulty level of 21 out of 21
+
+• KDDTest-21.TXT: A subset of the KDDTest+.txt file which does not include records with difficulty level of
+21 out of 21
+
+
+
+
+Try this at home!
+Open the KDDTrain text file using Excel (or a Spreadsheet viewer) and validate these statistics
+
+
+
+
+Next Steps
+• Complete the Python survey if you haven't done so.
+• Read "A Detailed Analysis of the KDD CUP 99 Data Set.pdf" published on Canvas.
+• Prepare Juypter Notebooks (or JupyterLab) to view future lectures and run code snippets.
+• Sign-up for the course on TopHat.
+• Join the course Piazza.
+• Join the student Slack workspace.
+• Check Homework-1 PDF.
+• Familiarize yourself with the in-person locations of TA Ohs.
+
+
+
+
+Waitlisted Students
