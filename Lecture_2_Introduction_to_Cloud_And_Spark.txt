@@ -1,0 +1,578 @@
+Introduction to the Cloud and Apache Spark
+Overview
+
+Introduction to the Cloud Context
+Basics of Apache Spark
+Run Apache Spark on the Cloud
+
+Why would you go with the Cloud?
+
+
+
+What is Cloud in the REAL World?
+
+"Cloud" refers to large Internet services running on 10,000s of machines (Amazon, Google, Microsoft, etc)
+"Cloud computing" refers to services by these companies that let external customers rent cycles and storage
+Amazon EC2: virtual machines at 8.5¢/hour (approximated cost) Amazon S3: storage at 21¢/GB/month (approximated cost) Google Cloud AppEngine
+Windows Azure
+
+Connect the Dots!
+
+
+
+Context
+Last lecture, we talked about the machine learning modeling process. Now, let's switch gears and discuss our technical infrastructure that can be deployed later to the cloud. You will need Spark installed on your machine in order to run the code snippets in this lecture.
+
+In this class, we will use Apache Spark for data preparation, cleaning, and feature engineering. But why Spark?
+
+Why Spark?
+
+Developed in 2009 at UC Berkeley AMPLab, then open sourced in 2010, Spark is the next revolution of the popular Hadoop MapReduce framework.
+Gartner, Advanced Analytics and Data Science (2014) "Organizations that are looking at big data challenges - including collection, ETL, storage, exploration and analytics - should consider Spark for its in-memory performance and the breadth of its model. It supports advanced analytics solutions on Hadoop clusters, including the iterative model required for machine learning and graph analysis."
+
+Pandas vs PySpark (Spark developed in Python)
+In a research done by Databricks, an industrial leader in the domain of big data storage and processing, PySpark shows superior performance compared to traditional implementations.
+
+
+
+What is Spark?
+
+Apache Spark is a fast and general-purpose cluster computing system for large scale data processing. Spark was originally written in Scala, which allows concise function syntax and interactive use.
+Apache Spark provides High-level APIs in Java, Scala, Python (PySpark) and R. Apache Spark combines two different modes of processing:
+Batch-based Processing which can be provided via Apache Hadoop MapReduce
+Real-time Processing which can be provided via Apache Storm.
+
+
+
+
+Spark Ecosytem
+
+
+
+Spark Componenets
+
+
+
+Spark Core
+Spark Core is the general execution engine for the Spark platform that other functionalities are built on top of it. Spark has several advantages:
+Speed: runs programs up to 100x faster than Hadoop MapReduce in memory, or 10x faster on disk Ease of Use: Write applications quickly in Java, Scala, Python, R
+Generality: Combine SQL, streaming, and complex analytics
+Runs Everywhere: Spark runs on Hadoop, Mesos, standalone, or in the cloud. It can access diverse data sources including HDFS, Cassandra, HBase, and S3
+
+In [ ]:
+
+
+
+
+In [1]:
+
+Download Data Files Remotely
+
+In [ ]:
+
+In [5]:
+
+Saved under KDDTrain+.txt
+
+
+Cloud Consideration
+Your data need to be moved to a special storage server if you are running Spark on the Cloud. This special storage is called HDFS. The following command is used to move your data from your local storage to the special storage server.
+
+In [ ]:
+
+Spark Dataframes
+Inspired by pandas DataFrames in structure, format, and a few specific operations, Spark DataFrames are like distributed in-memory tables with named columns and schemas, where each column has a specific data type: integer, string, array, map, real, date, timestamp, etc. To a human's eye, a Spark DataFrame is like a table
+
+When data are visualized as a structured table, it's not only easy to digest but also easy to work with when it comes to common operations you might want to execute on rows and columns.
+Also, DataFrames are immutable and Spark keeps a lineage of all transformations. You can add or change the names and data types of the columns, creating new DataFrames while the previous versions are preserved. A named column in a DataFrame and its associated Spark data type can be declared in the schema.
+
+Let's examine the generic and structured data types available in Spark before we use them to define a schema. Then we'll illustrate how to create a DataFrame with a schema.
+
+Spark's Basic Data Types
+Spark supports basic internal data types. These data types can be declared in your Spark application or defined in your schema
+
+
+
+
+
+In [2]:
+
+
+
+
+
+
+
+-RECORD 0--------
+_c0|0_c1|tcp_c2|ftp_data_c3|SF_c4|491_c5|0_c6|0_c7|0_c8|0_c9|0_c10|0_c11|0_c12|0_c13|0_c14|0_c15|0_c16|0_c17|0_c18|0_c19|0
+_c20|0_c21|0_c22|2_c23|2_c24|0.00_c25|0.00_c26|0.00_c27|0.00_c28|1.00_c29|0.00_c30|0.00_c31|150_c32|25_c33|0.17_c34|0.03_c35|0.17_c36|0.00_c37|0.00_c38|0.00_c39|0.05_c40|0.00_c41|normal_c42|20-RECORD 1--------
+_c0 | 0
+_c1 | udp
+_c2 | other
+_c3 | SF
+_c4 | 146
+_c5 | 0
+_c6 | 0
+_c7 | 0
+_c8 | 0
+_c9 | 0
+_c10 | 0
+_c11 | 0
+_c12 | 0
+_c13 | 0
+_c14 | 0
+_c15 | 0
+_c16 | 0
+_c17 | 0
+_c18 | 0
+_c19 | 0
+_c20 | 0
+_c21 | 0
+_c22 | 13
+_c23 | 1
+_c24 | 0.00
+_c25 | 0.00
+_c26 | 0.00
+_c27 | 0.00
+_c28 | 0.08
+_c29 | 0.15
+_c30 | 0.00
+_c31 | 255
+_c32 | 1
+_c33 | 0.00
+_c34 | 0.60
+_c35 | 0.88
+_c36 | 0.00
+_c37 | 0.00
+_c38 | 0.00
+_c39 | 0.00
+_c40 | 0.00
+_c41 | normal
+
+_c42 |15-RECORD2--------_c0 |0_c1 |tcp_c2 |private_c3 |S0_c4 |0_c5 |0_c6 |0_c7 |0_c8 |0_c9 |0_c10 |0_c11 |0_c12 |0_c13 |0_c14 |0_c15 |0_c16 |0_c17 |0_c18 |0_c19 |0_c20 |0_c21 |0_c22 |123_c23 |6_c24 |1.00_c25 |1.00_c26 |0.00_c27 |0.00_c28 |0.05_c29 |0.07_c30 |0.00_c31 |255_c32 |26_c33 |0.10_c34 |0.05_c35 |0.00_c36 |0.00_c37 |1.00_c38 |1.00_c39 |0.00_c40 |0.00_c41 |neptune_c42 |19-RECORD3--------_c0 |0_c1 |tcp_c2 |http_c3 |SF_c4 |232_c5 |8153_c6 |0_c7 |0_c8 |0_c9 |0_c10 |0_c11 |1_c12 |0_c13 |0_c14 |0_c15 |0_c16 |0_c17 |0_c18 |0_c19 |0
+_c20|0_c21|0_c22|5_c23|5_c24|0.20_c25|0.20_c26|0.00_c27|0.00_c28|1.00_c29|0.00_c30|0.00_c31|30_c32|255_c33|1.00_c34|0.00_c35|0.03_c36|0.04_c37|0.03_c38|0.01_c39|0.00_c40|0.01_c41|normal_c42|21-RECORD 4--------
+_c0 | 0
+_c1 | tcp
+_c2 | http
+_c3 | SF
+_c4 | 199
+_c5 | 420
+_c6 | 0
+_c7 | 0
+_c8 | 0
+_c9 | 0
+_c10 | 0
+_c11 | 1
+_c12 | 0
+_c13 | 0
+_c14 | 0
+_c15 | 0
+_c16 | 0
+_c17 | 0
+_c18 | 0
+_c19 | 0
+_c20 | 0
+_c21 | 0
+_c22 | 30
+_c23 | 32
+_c24 | 0.00
+_c25 | 0.00
+_c26 | 0.00
+_c27 | 0.00
+_c28 | 1.00
+_c29 | 0.00
+_c30 | 0.09
+_c31 | 255
+_c32 | 255
+_c33 | 1.00
+_c34 | 0.00
+_c35 | 0.00
+_c36 | 0.00
+_c37 | 0.00
+_c38 | 0.00
+_c39 | 0.00
+_c40 | 0.00
+_c41 | normal
+
+_c42 | 21
+only showing top 5 rows
+
+Avoiding Auto-assigned Column Names: Read CSV and Specify the Column Names
+
+In [6]:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-RECORD 0-------------------------------
+duration|0protocol_type|tcpservice|ftp_dataflag|SFsrc_bytes|491dst_bytes|0land|0wrong_fragment|0urgent|0hot|0num_failed_logins|0logged_in|0num_compromised|0root_shell|0su_attempted|0num_root|0num_file_creations|0num_shells|0num_access_files|0num_outbound_cmds|0is_host_login|0is_guest_login|0count|2srv_count|2serror_rate|0.0srv_serror_rate|0.0rerror_rate|0.0srv_rerror_rate|0.0same_srv_rate|1.0diff_srv_rate|0.0srv_diff_host_rate|0.0dst_host_count|150dst_host_srv_count|25dst_host_same_srv_rate|0.17dst_host_diff_srv_rate|0.03dst_host_same_src_port_rate|0.17dst_host_srv_diff_host_rate|0.0dst_host_serror_rate|0.0dst_host_srv_serror_rate|0.0dst_host_rerror_rate|0.05dst_host_srv_rerror_rate|0.0
+classes	| normal
+ difficulty_level	| 20 only showing top 1 row
+
+
+More ways to Display Dataframes
+
+1. will return a list of five Row objects.
+2. 	will get all of the data from the entire DataFrame. Be really careful when using it, because if you have a large data set, you can easily crash the driver node.
+3.   df.show() is the most commonly used method to view a dataframe. There are a few parameters we can pass to this method, like the number of rows and truncaiton. For example,  df.show(5, False) or  df.show(5, truncate=False) will show the entire data wihtout any truncation.
+4.   df.limit(5)  will return a new DataFrame by taking the first n rows. As spark is distributed in nature, there is no guarantee that  df.limit()  will give you the same results each time.
+
+Schemas and Creating DataFrames
+You can think about the dataframe as a table. A schema in Spark defines the column names and associated data types for a DataFrame. Most often, schemas come into play when you are reading structured data from an external data source. Defining a schema up front as opposed to taking a schema-on-read approach offers three benefits:
+You relieve Spark from the onus of inferring data types.
+You prevent Spark from creating a separate job just to read a large portion of your file to assert the schema, which for a large data file can be expensive and time-consuming.
+You can detect errors early if data don't match the schema.
+</ul> We will explore the creation of schemas and we want you to leverage them. That said, we will automatically infer the schemas when running the code in the lecture for simplicity.
+
+You may also create your own schema using data field name followed by data type.
+
+In [2]:
+
+
+
+
+
+
++---+---------+	+
+| id|firstName|	WEBSITE|
++---+---------+	+
+| 1|	John|https://tinyurl.1|
+| 2|	Brooke|https://tinyurl.2|
++---+---------+	+
+
+root
+|-- id: integer (nullable = true)
+|-- firstName: string (nullable = true)
+|-- WEBSITE: string (nullable = true)
+
+
+Display Schema Information for Your Dataframe
+
+
+In [7]:
+
+
+
+root
+|-- duration: integer
+
+
+
+
+(nullable = true)
+
+|-- protocol_type: string (nullable = true)
+|-- service: string (nullable = true)
+|-- flag: string (nullable = true)
+|-- src_bytes: integer (nullable = true)
+|-- dst_bytes: integer (nullable = true)
+|-- land: integer (nullable = true)
+|-- wrong_fragment: integer (nullable = true)
+|-- urgent: integer (nullable = true)
+|-- hot: integer (nullable = true)
+|-- num_failed_logins: integer (nullable = true)
+|-- logged_in: integer (nullable = true)
+|-- num_compromised: integer (nullable = true)
+|-- root_shell: integer (nullable = true)
+|-- su_attempted: integer (nullable = true)
+
+|-- num_root: integer (nullable = true)
+|-- num_file_creations: integer (nullable = true)
+|-- num_shells: integer (nullable = true)
+|-- num_access_files: integer (nullable = true)
+|-- num_outbound_cmds: integer (nullable = true)
+|-- is_host_login: integer (nullable = true)
+|-- is_guest_login: integer (nullable = true)
+|-- count: integer (nullable = true)
+|-- srv_count: integer (nullable = true)
+|-- serror_rate: double (nullable = true)
+|-- srv_serror_rate: double (nullable = true)
+|-- rerror_rate: double (nullable = true)
+|-- srv_rerror_rate: double (nullable = true)
+|-- same_srv_rate: double (nullable = true)
+|-- diff_srv_rate: double (nullable = true)
+|-- srv_diff_host_rate: double (nullable = true)
+|-- dst_host_count: integer (nullable = true)
+|-- dst_host_srv_count: integer (nullable = true)
+|-- dst_host_same_srv_rate: double (nullable = true)
+|-- dst_host_diff_srv_rate: double (nullable = true)
+|-- dst_host_same_src_port_rate: double (nullable = true)
+|-- dst_host_srv_diff_host_rate: double (nullable = true)
+|-- dst_host_serror_rate: double (nullable = true)
+|-- dst_host_srv_serror_rate: double (nullable = true)
+|-- dst_host_rerror_rate: double (nullable = true)
+|-- dst_host_srv_rerror_rate: double (nullable = true)
+|-- classes: string (nullable = true)
+|-- difficulty_level: integer (nullable = true)
+
+
+Print Column Names in Your Dataframe
+
+
+In [5]:
+
+
+
+['duration', 'protocol_type', 'service', 'flag', 'src_bytes', 'dst_bytes', 'land', 'wron g_fragment', 'urgent', 'hot', 'num_failed_logins', 'logged_in', 'num_compromised', 'root
+_shell', 'su_attempted', 'num_root', 'num_file_creations', 'num_shells', 'num_access_fil es', 'num_outbound_cmds', 'is_host_login', 'is_guest_login', 'count', 'srv_count', 'serr or_rate', 'srv_serror_rate', 'rerror_rate', 'srv_rerror_rate', 'same_srv_rate', 'diff_sr v_rate', 'srv_diff_host_rate', 'dst_host_count', 'dst_host_srv_count', 'dst_host_same_sr v_rate', 'dst_host_diff_srv_rate', 'dst_host_same_src_port_rate', 'dst_host_srv_diff_hos t_rate', 'dst_host_serror_rate', 'dst_host_srv_serror_rate', 'dst_host_rerror_rate', 'ds
+
+t_host_srv_rerror_rate', 'classes', 'difficulty_level']
+
+Print Total Number of Your Records in Your DataframeIn[7]:print(df.count())125973Print Sample Record from Your DataframeIn[8]:df.show(1, vertical=True)-RECORD 0-------------------------------duration|0protocol_type|tcpservice|ftp_dataflag|SFsrc_bytes|491dst_bytes|0
+land|0wrong_fragment|0urgent|0hot|0num_failed_logins|0logged_in|0num_compromised|0root_shell|0su_attempted|0num_root|0num_file_creations|0num_shells|0num_access_files|0num_outbound_cmds|0is_host_login|0is_guest_login|0count|2srv_count|2serror_rate|0.0srv_serror_rate|0.0rerror_rate|0.0srv_rerror_rate|0.0same_srv_rate|1.0diff_srv_rate|0.0srv_diff_host_rate|0.0dst_host_count|150dst_host_srv_count|25dst_host_same_srv_rate|0.17dst_host_diff_srv_rate|0.03dst_host_same_src_port_rate|0.17dst_host_srv_diff_host_rate|0.0dst_host_serror_rate|0.0dst_host_srv_serror_rate|0.0dst_host_rerror_rate|0.05dst_host_srv_rerror_rate|0.0classes|normaldifficulty_level|20only showing top 1 row
+
+
+DataFrame Operations on Columns
+
+1. Selecting Columns & Creating Subset Dataframes
+2. Adding New Columns
+3. Renaming Columns
+4. Removing Columns
+
+Create a Subset Dataframe from Your Dataframe
+
+In [9]:
+
++--------+-------------+--------+-------+	+
+|duration|protocol_type| service|classes|difficulty_level|
++--------+-------------+--------+-------+	+
+|	0|	tcp|ftp_data| normal|	20|
+|	0|	udp|	other| normal|	15|
+|	0|	tcp| private|neptune|	19|
+|	0|	tcp|	http| normal|	21|
+|	0|	tcp|	http| normal|	21|
++--------+-------------+--------+-------+	+
+only showing top 5 rows
+
+
+Display Summary Statistics in Your Dataframe
+
+
+In [10]:
+
+
+
+-RECORD 0-------------------------------------------
+
+summary|countduration|125973protocol_type|125973service|125973flag|125973src_bytes|125973dst_bytes|125973land|125973wrong_fragment|125973urgent|125973hot|125973num_failed_logins|125973logged_in|125973num_compromised|125973root_shell|125973su_attempted|125973num_root|125973num_file_creations|125973num_shells|125973num_access_files|125973num_outbound_cmds|125973is_host_login|125973is_guest_login|125973count|125973srv_count|125973serror_rate|125973srv_serror_rate|125973rerror_rate|125973srv_rerror_rate|125973same_srv_rate|125973diff_srv_rate|125973srv_diff_host_rate|125973dst_host_count|125973dst_host_srv_count|125973dst_host_same_srv_rate|125973dst_host_diff_srv_rate|125973dst_host_same_src_port_rate|125973dst_host_srv_diff_host_rate|125973dst_host_serror_rate|125973dst_host_srv_serror_rate|125973
+
+
+
+
+-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-
+
+dst_host_srv_diff_host_rate|0.0dst_host_serror_rate|0.0dst_host_srv_serror_rate|0.0dst_host_rerror_rate|0.0dst_host_srv_rerror_rate|0.0classes|backdifficulty_level|0-RECORD 4-------------------------------------------
+summary|maxduration|42908protocol_type|udpservice|whoisflag|SHsrc_bytes|1379963888dst_bytes|1309937401land|1wrong_fragment|3urgent|3hot|77num_failed_logins|5logged_in|1num_compromised|7479root_shell|1su_attempted|2num_root|7468num_file_creations|43num_shells|2num_access_files|9num_outbound_cmds|0is_host_login|1is_guest_login|1count|511srv_count|511serror_rate|1.0srv_serror_rate|1.0rerror_rate|1.0srv_rerror_rate|1.0same_srv_rate|1.0diff_srv_rate|1.0srv_diff_host_rate|1.0dst_host_count|255dst_host_srv_count|255dst_host_same_srv_rate|1.0dst_host_diff_srv_rate|1.0dst_host_same_src_port_rate|1.0dst_host_srv_diff_host_rate|1.0dst_host_serror_rate|1.0dst_host_srv_serror_rate|1.0dst_host_rerror_rate|1.0dst_host_srv_rerror_rate|1.0classes|warezmasterdifficulty_level|21
+
+Display Unique Values from a Column in Your Dataframe
+
+
+In [11]:
+
+
+
++	+
+|	classes|
++	+
+|	neptune|
+|	satan|
+|	nmap|
+
+|	portsweep|
+|	back|
+|	warezclient|
+|	guess_passwd|
+|	normal|
+|	rootkit|
+|	perl|
+|buffer_overflow|
+|	multihop|
+|	ipsweep|
+|	warezmaster|
+|	imap|
+|	teardrop|
+|	spy|
+|	land|
+|	pod|
+|	ftp_write|
+|	smurf|
+|	loadmodule|
+|	phf|
++	+
+
+
+Add a Column to Your Dataframe
+
+In [12]:
+
+
+
+
+
+-RECORD 0-------------------------------
+duration|0protocol_type|tcpservice|ftp_dataflag|SFsrc_bytes|491dst_bytes|0land|0wrong_fragment|0urgent|0hot|0num_failed_logins|0logged_in|0num_compromised|0root_shell|0su_attempted|0num_root|0num_file_creations|0num_shells|0num_access_files|0num_outbound_cmds|0is_host_login|0is_guest_login|0count|2srv_count|2serror_rate|0.0srv_serror_rate|0.0rerror_rate|0.0srv_rerror_rate|0.0same_srv_rate|1.0diff_srv_rate|0.0srv_diff_host_rate|0.0
+dst_host_count|150dst_host_srv_count|25dst_host_same_srv_rate|0.17dst_host_diff_srv_rate|0.03dst_host_same_src_port_rate|0.17dst_host_srv_diff_host_rate|0.0dst_host_serror_rate|0.0dst_host_srv_serror_rate|0.0dst_host_rerror_rate|0.05dst_host_srv_rerror_rate|0.0classes|normaldifficulty_level|20 first_column	| 1
+only showing top 1 row
+
+
+Renaming a Column in Your Dataframe
+
+In [13]:
+
+
+root
+|-- duration: integer (nullable = true)
+|-- protocol_type: string (nullable = true)
+|-- service: string (nullable = true)
+|-- flag: string (nullable = true)
+|-- src_bytes: integer (nullable = true)
+|-- dst_bytes: integer (nullable = true)
+|-- land: integer (nullable = true)
+|-- wrong_fragment: integer (nullable = true)
+|-- urgent: integer (nullable = true)
+|-- hot: integer (nullable = true)
+|-- num_failed_logins: integer (nullable = true)
+|-- logged_in: integer (nullable = true)
+|-- num_compromised: integer (nullable = true)
+|-- root_shell: integer (nullable = true)
+|-- su_attempted: integer (nullable = true)
+|-- num_root: integer (nullable = true)
+|-- num_file_creations: integer (nullable = true)
+|-- num_shells: integer (nullable = true)
+|-- num_access_files: integer (nullable = true)
+|-- num_outbound_cmds: integer (nullable = true)
+|-- is_host_login: integer (nullable = true)
+|-- is_guest_login: integer (nullable = true)
+|-- count: integer (nullable = true)
+|-- srv_count: integer (nullable = true)
+|-- serror_rate: double (nullable = true)
+|-- srv_serror_rate: double (nullable = true)
+|-- rerror_rate: double (nullable = true)
+|-- srv_rerror_rate: double (nullable = true)
+|-- same_srv_rate: double (nullable = true)
+|-- diff_srv_rate: double (nullable = true)
+|-- srv_diff_host_rate: double (nullable = true)
+|-- dst_host_count: integer (nullable = true)
+|-- dst_host_srv_count: integer (nullable = true)
+|-- dst_host_same_srv_rate: double (nullable = true)
+|-- dst_host_diff_srv_rate: double (nullable = true)
+|-- dst_host_same_src_port_rate: double (nullable = true)
+|-- dst_host_srv_diff_host_rate: double (nullable = true)
+|-- dst_host_serror_rate: double (nullable = true)
+|-- dst_host_srv_serror_rate: double (nullable = true)
+|-- dst_host_rerror_rate: double (nullable = true)
+|-- dst_host_srv_rerror_rate: double (nullable = true)
+
+|-- classes: string (nullable = true)
+|-- difficulty_level: integer (nullable = true)
+|-- new_column_one: integer (nullable = false)
+
+
+Delete a Column from Your Dataframe
+
+In [ ]:
+
+Lab: Run Spark on the Cloud
+Create Clusters (e.g. Hadoop Clusters)
+   A cluster is group of machines, servers, or nodes. It helps providing the sum of the computational power offered by all incorporated machines. It's difficult to build a local machine with 64GB RAM and 20TB of Storage but that is not difficult when you are running on the cloud.
+You may start by navigating to Dataproc and click on the Clusters section
+
+Cluster - Setup
+Next, you need to create your cluster and choose the cluster to use "Google Compute Engine"
+
+
+Cluster Configuration
+Make sure to follow the cluster creation guide posted on Canvas
+
+Running Cluster
+Once you click on the create button, Google Cloud will work on creating your own cluster and if it's successful, you will see your cluster running.
+
+Connect to Your Cluster
+From the Web Interfaces, open Jupyter. Upload your Notebook to  GCS  folder and run the cells.
